@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+    --color-ink: #0a0a0b;
+    --color-ink-soft: #121215;
+    --color-line: #232329;
+    --color-paper: #f3f3f5;
+    --color-muted: #82828d;
+    --color-accent: #ff4d2e;
+
+    --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+}
+
+/* Grain sits above the gradient wash but below all content. */
+.grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hairline used between sections and list rows. */
+.rule {
+    border-top: 1px solid var(--color-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
