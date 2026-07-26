@@ -1,18 +1,21 @@
-import { Aurora } from "@/components/Aurora";
+import { Backdrop } from "@/components/Backdrop";
 import { ScrollRail } from "@/components/ScrollRail";
 import { Hero } from "@/components/Hero";
-import { Work } from "@/components/Work";
+import { Marquee } from "@/components/Marquee";
+import { Index } from "@/components/Index";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
+import { marquee } from "@/content";
 
 export default function Home() {
     return (
         <>
             <ScrollRail />
-            <Aurora />
+            <Backdrop />
             <main>
                 <Hero />
-                <Work />
+                <Marquee items={marquee} />
+                <Index />
                 <About />
             </main>
             <Footer />

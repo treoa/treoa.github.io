@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-    --color-ink: #0a0a0b;
-    --color-ink-soft: #121215;
-    --color-line: #232329;
-    --color-paper: #f3f3f5;
-    --color-muted: #82828d;
+    /* Warm near-black and bone rather than the usual cool grey, so the page
+       reads editorial instead of generic-dark-portfolio. */
+    --color-ink: #0b0a09;
+    --color-ink-soft: #14120f;
+    --color-line: #262119;
+    --color-paper: #f0ede8;
+    --color-muted: #8a8175;
     --color-accent: #ff4d2e;
 
     --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
     --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 :root {
@@ -19,13 +22,15 @@
 html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    /* Stops iOS Safari inflating type in landscape. */
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
     background: var(--color-ink);
     color: var(--color-paper);
     font-family: var(--font-sans);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 ::selection {
@@ -33,24 +38,73 @@ body {
     color: var(--color-ink);
 }
 
-/* Grain sits above the gradient wash but below all content. */
+/* Horizontal page padding, widened on larger screens and respecting the
+   notch on landscape iPhones. */
+.gutter {
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+}
+
+@media (min-width: 768px) {
+    .gutter {
+        padding-inline: max(3rem, env(safe-area-inset-left));
+    }
+}
+
+/* Dot matrix backdrop. Fixed so it never adds to scroll height. */
+.matrix {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.9;
+}
+
 .grain::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Hairline used between sections and list rows. */
 .rule {
     border-top: 1px solid var(--color-line);
+}
+
+/* Touch devices get no :hover, so anything hover-only must be additive.
+   Wrap such rules in this query rather than assuming a pointer exists. */
+@media (hover: hover) and (pointer: fine) {
+    .hover-underline {
+        background-size: 0% 1px;
+    }
+
+    .hover-underline:hover {
+        background-size: 100% 1px;
+    }
+}
+
+.hover-underline {
+    background-image: linear-gradient(var(--color-accent), var(--color-accent));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
