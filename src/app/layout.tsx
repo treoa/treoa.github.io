@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter } from "next/font/google";
 import { site } from "@/content";
 import "./globals.css";
 
 const inter = Inter({
     subsets: ["latin"],
+    weight: ["300", "400", "500", "600"],
     variable: "--font-inter",
-    display: "swap"
-});
-
-const instrument = Instrument_Serif({
-    subsets: ["latin"],
-    weight: "400",
-    style: ["italic"],
-    variable: "--font-instrument",
     display: "swap"
 });
 
@@ -31,8 +24,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
-            <body className="grain">{children}</body>
+        <html lang="en" className={inter.variable}>
+            <body>{children}</body>
         </html>
     );
 }

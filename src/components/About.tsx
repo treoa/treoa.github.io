@@ -12,7 +12,7 @@ export function About() {
                 <div className="space-y-6">
                     {about.body.map((paragraph, i) => (
                         <Reveal key={i} delay={i * 0.08}>
-                            <p className="text-[clamp(1.05rem,2.4vw,1.5rem)] leading-relaxed text-pretty">
+                            <p className="text-[clamp(1.05rem,2.4vw,1.5rem)] leading-relaxed font-light text-pretty">
                                 {paragraph}
                             </p>
                         </Reveal>

@@ -1,98 +1,79 @@
 @import "tailwindcss";
 
 @theme {
-    /* Warm near-black and bone rather than the usual cool grey, so the page
-       reads editorial instead of generic-dark-portfolio. */
-    --color-ink: #0b0a09;
-    --color-ink-soft: #14120f;
-    --color-line: #262119;
-    --color-paper: #f0ede8;
-    --color-muted: #8a8175;
-    --color-accent: #ff4d2e;
+    --color-ink: #000000;
+    --color-paper: #ffffff;
+    --color-haze: #f4f4f6;
+    --color-edge: rgba(0, 0, 0, 0.12);
+    --color-edge-strong: rgba(0, 0, 0, 0.35);
+    --color-dim: rgba(0, 0, 0, 0.55);
 
     --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-    --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
-    --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
-    color-scheme: dark;
+    color-scheme: light;
 }
 
 html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     /* Stops iOS Safari inflating type in landscape. */
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     overflow-x: clip;
 }
 
 ::selection {
-    background: var(--color-accent);
-    color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
 }
 
-/* Horizontal page padding, widened on larger screens and respecting the
-   notch on landscape iPhones. */
+/* Page gutters: 16px on mobile, 32px from 768px, per the layout spec. Uses
+   max() with the safe-area inset so landscape iPhones clear the notch. */
 .gutter {
-    padding-inline: max(1.25rem, env(safe-area-inset-left));
+    padding-inline: max(1rem, env(safe-area-inset-left));
 }
 
 @media (min-width: 768px) {
     .gutter {
-        padding-inline: max(3rem, env(safe-area-inset-left));
+        padding-inline: max(2rem, env(safe-area-inset-left));
     }
 }
 
-/* Dot matrix backdrop. Fixed so it never adds to scroll height. */
-.matrix {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image: radial-gradient(var(--color-line) 1px, transparent 1px);
-    background-size: 22px 22px;
-    opacity: 0.9;
+/* Fade-up behind the pinned hero copy so text stays legible over any media. */
+.fade-up {
+    background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
 }
 
-.grain::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Fallback hero visual, used when no hero video is supplied. Two slow
+   counter-rotating conic sweeps read as motion without looking generated. */
+.sweep {
+    background:
+        conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 0, 0, 0.05) 90deg, transparent 180deg),
+        conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(0, 0, 0, 0.04) 120deg, transparent 240deg);
+    animation: sweep 42s linear infinite;
 }
 
-.rule {
-    border-top: 1px solid var(--color-line);
-}
-
-/* Touch devices get no :hover, so anything hover-only must be additive.
-   Wrap such rules in this query rather than assuming a pointer exists. */
-@media (hover: hover) and (pointer: fine) {
-    .hover-underline {
-        background-size: 0% 1px;
-    }
-
-    .hover-underline:hover {
-        background-size: 100% 1px;
+@keyframes sweep {
+    to {
+        transform: rotate(360deg);
     }
 }
 
-.hover-underline {
-    background-image: linear-gradient(var(--color-accent), var(--color-accent));
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 1px;
-    transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+/* Hairline grid, kept very light so it reads as paper texture. */
+.grid-paper {
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
 }
 
 @media (prefers-reduced-motion: reduce) {

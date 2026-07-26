@@ -8,25 +8,25 @@ export function Footer() {
             <SectionLabel n="03" title="Contact" />
 
             <Reveal>
-                <nav className="mt-8 flex flex-col md:mt-12">
+                <nav className="mt-8 flex flex-col border-t border-edge md:mt-12">
                     {links.map((link) => (
                         <a
                             key={link.label}
                             href={link.href}
                             target={link.href.startsWith("http") ? "_blank" : undefined}
                             rel="noreferrer"
-                            className="rule flex min-h-16 items-center justify-between py-5 text-[clamp(1.5rem,5vw,2.5rem)] font-medium tracking-[-0.03em] transition-colors hover:text-accent"
+                            className="flex min-h-16 items-center justify-between border-b border-edge py-5 text-[clamp(1.5rem,5vw,2.5rem)] font-light tracking-[-0.03em] transition-colors hover:text-dim"
                         >
                             {link.label}
-                            <span className="font-mono text-xs text-muted">&#8599;</span>
+                            <span className="text-[11px] text-dim">&#8599;</span>
                         </a>
                     ))}
                 </nav>
             </Reveal>
 
-            <div className="mt-12 flex flex-col gap-2 font-mono text-[0.65rem] tracking-[0.16em] text-muted uppercase md:flex-row md:justify-between md:text-xs">
+            <div className="mt-12 flex flex-col gap-2 text-[11px] tracking-[0.14em] text-dim uppercase md:flex-row md:justify-between">
                 <span>{site.domain}</span>
-                <span>{site.footnote}</span>
+                <span>{site.brand}</span>
             </div>
         </footer>
     );

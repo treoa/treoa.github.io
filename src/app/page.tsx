@@ -1,20 +1,15 @@
-import { Backdrop } from "@/components/Backdrop";
-import { ScrollRail } from "@/components/ScrollRail";
-import { Hero } from "@/components/Hero";
-import { Marquee } from "@/components/Marquee";
+import { Nav } from "@/components/Nav";
+import { Stage } from "@/components/Stage";
 import { Index } from "@/components/Index";
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
-import { marquee } from "@/content";
 
 export default function Home() {
     return (
         <>
-            <ScrollRail />
-            <Backdrop />
+            <Nav />
             <main>
-                <Hero />
-                <Marquee items={marquee} />
+                <Stage />
                 <Index />
                 <About />
             </main>

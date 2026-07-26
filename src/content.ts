@@ -8,19 +8,35 @@
 
 export const site = {
     domain: "treo.is-a.dev",
+    brand: "REPLACE — your name",
     title: "REPLACE — your name",
-    description: "REPLACE — one sentence on what you build. Used for search results and link previews.",
-    footnote: "REPLACE — e.g. Built with Next.js"
+    description: "REPLACE — one sentence on what you build. Used for search results and link previews."
+};
+
+export const nav = {
+    // Two short labels in the pill beside the logo. Hidden below 768px.
+    tags: ["REPLACE", "REPLACE"],
+    // Label on the right-hand pill. Hidden below 768px.
+    right: "REPLACE"
 };
 
 export const hero = {
-    // Rendered as a per-word mask reveal, so keep it short. 3-5 words reads best.
-    headline: ["REPLACE", "your", "headline"],
-    // Whichever headline word matches this string is set in italic serif.
-    emphasis: "your",
-    role: "REPLACE — a sentence or two on what you do and what you want to be contacted about.",
-    location: "REPLACE — city",
-    cta: "Index"
+    // Small line above the heading.
+    eyebrow: "REPLACE — a short positioning line",
+    // Rendered on two lines exactly as written.
+    headline: ["REPLACE — first line,", "second line."],
+    actions: [
+        { label: "REPLACE", href: "#index", primary: true },
+        { label: "REPLACE", href: "#about", primary: false }
+    ],
+    // Three pills on the right of the hero footer.
+    pills: ["REPLACE", "REPLACE", "REPLACE"],
+    /**
+     * Optional. Drop a file at public/hero.mp4 and set this to "/hero.mp4".
+     * Leave null and the animated fallback is used instead. Self-host it; do
+     * not hotlink someone else's CDN, it can be revoked without warning.
+     */
+    video: null as string | null
 };
 
 export const about = {
@@ -67,9 +83,6 @@ export const projects: Project[] = [
         href: "#"
     }
 ];
-
-/** Scrolling strip between the hero and the index. Short words work best. */
-export const marquee = ["REPLACE", "your", "keywords", "here"];
 
 export const links = [
     { label: "GitHub", href: "https://github.com/treoa" },
