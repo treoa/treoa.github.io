@@ -10,8 +10,8 @@
 
 export const site = {
     domain: "treo.is-a.dev",
-    brand: "Anuar Suleimenov",
-    title: "Anuar Suleimenov",
+    brand: "Treo Roygbiv",
+    title: "Treo Roygbiv",
     description:
         "Applied machine learning for vision and language: face benchmarks, handwriting recognition, retrieval, and multi-agent systems."
 };

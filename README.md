@@ -26,9 +26,9 @@ Correct sequence:
    This is not optional. With the source left on "Deploy from a branch", GitHub also runs
    its legacy `pages build and deployment` job, which races the `Deploy` workflow here.
    When Jekyll wins, it renders this README into `index.html` and every `/_next/*` asset
-   404s. Symptom: the page title becomes `treoa.github.io | Anuar Suleimenov` and the site
-   is a rendered README. Setting the source to GitHub Actions stops the Jekyll job running
-   at all.
+   404s. Symptom: the page title becomes `treoa.github.io | <account name>` and the site is
+   a rendered README. Setting the source to GitHub Actions stops the Jekyll job running at
+   all.
 
 3. Confirm `https://treoa.github.io` loads. Screenshot it.
 4. Open the is-a.dev PR using that link and screenshot.
